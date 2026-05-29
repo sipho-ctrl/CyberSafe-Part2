@@ -125,7 +125,8 @@ GitHub Actions is configured to build the project on each push. A green check ma
 
 ## Video Presentation
 
-[Watch the CyberSafe Part 2 Presentation]()
+[Watch the CyberSafe Part 2 Presentation](https://youtu.be/Cn9aY3kiT30?si=tzwHvIge0eJ1bRVV
+)
 
 
 
