@@ -2,15 +2,11 @@
 {
     partial class Form1
     {
-        /// <summary>
-        ///  Required designer variable.
-        /// </summary>
         private System.ComponentModel.IContainer components = null;
+        private System.Windows.Forms.RichTextBox txtChatHistory;
+        private System.Windows.Forms.TextBox txtUserInput;
+        private System.Windows.Forms.Button btnSend;
 
-        /// <summary>
-        ///  Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -20,79 +16,54 @@
             base.Dispose(disposing);
         }
 
-        #region Windows Form Designer generated code
-
-        /// <summary>
-        ///  Required method for Designer support - do not modify
-        ///  the contents of this method with the code editor.
-        /// </summary>
         private void InitializeComponent()
         {
-            richTextBox1 = new RichTextBox();
-            txtChatHistory = new RichTextBox();
-            txtUserInput = new TextBox();
-            btnSend = new Button();
-            SuspendLayout();
-            // 
-            // richTextBox1
-            // 
-            richTextBox1.Location = new Point(0, 0);
-            richTextBox1.Name = "richTextBox1";
-            richTextBox1.Size = new Size(100, 96);
-            richTextBox1.TabIndex = 0;
-            richTextBox1.Text = "";
+            this.txtChatHistory = new System.Windows.Forms.RichTextBox();
+            this.txtUserInput = new System.Windows.Forms.TextBox();
+            this.btnSend = new System.Windows.Forms.Button();
+            this.SuspendLayout();
             // 
             // txtChatHistory
             // 
-            txtChatHistory.BackColor = Color.Black;
-            txtChatHistory.Dock = DockStyle.Fill;
-            txtChatHistory.ForeColor = Color.White;
-            txtChatHistory.Location = new Point(0, 0);
-            txtChatHistory.Name = "txtChatHistory";
-            txtChatHistory.Size = new Size(800, 450);
-            txtChatHistory.TabIndex = 1;
-            txtChatHistory.Text = "";
-            txtChatHistory.TextChanged += txtChatHistory_TextChanged;
+            this.txtChatHistory.Anchor = System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.txtChatHistory.BackColor = System.Drawing.Color.Black;
+            this.txtChatHistory.ForeColor = System.Drawing.Color.White;
+            this.txtChatHistory.Location = new System.Drawing.Point(12, 12);
+            this.txtChatHistory.Name = "txtChatHistory";
+            this.txtChatHistory.ReadOnly = true;
+            this.txtChatHistory.Size = new System.Drawing.Size(776, 400);
+            this.txtChatHistory.TabIndex = 0;
+            this.txtChatHistory.Text = "";
             // 
             // txtUserInput
             // 
-            txtUserInput.Location = new Point(12, 386);
-            txtUserInput.Name = "txtUserInput";
-            txtUserInput.Size = new Size(776, 23);
-            txtUserInput.TabIndex = 2;
+            this.txtUserInput.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left | System.Windows.Forms.AnchorStyles.Right;
+            this.txtUserInput.Location = new System.Drawing.Point(12, 418);
+            this.txtUserInput.Name = "txtUserInput";
+            this.txtUserInput.Size = new System.Drawing.Size(650, 20);
+            this.txtUserInput.TabIndex = 1;
             // 
             // btnSend
             // 
-            btnSend.BackColor = Color.Cyan;
-            btnSend.Dock = DockStyle.Bottom;
-            btnSend.Location = new Point(0, 415);
-            btnSend.Name = "btnSend";
-            btnSend.Size = new Size(800, 35);
-            btnSend.TabIndex = 3;
-            btnSend.Text = "Send";
-            btnSend.UseVisualStyleBackColor = false;
-            btnSend.Click += btnSend_Click;
+            this.btnSend.Anchor = System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right;
+            this.btnSend.BackColor = System.Drawing.Color.Cyan;
+            this.btnSend.Location = new System.Drawing.Point(668, 415);
+            this.btnSend.Name = "btnSend";
+            this.btnSend.Size = new System.Drawing.Size(120, 30);
+            this.btnSend.TabIndex = 2;
+            this.btnSend.Text = "Send";
+            this.btnSend.UseVisualStyleBackColor = false;
             // 
             // Form1
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
-            AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
-            Controls.Add(btnSend);
-            Controls.Add(txtUserInput);
-            Controls.Add(txtChatHistory);
-            Controls.Add(richTextBox1);
-            Name = "Form1";
-            Text = "Form1";
-            ResumeLayout(false);
-            PerformLayout();
+            this.ClientSize = new System.Drawing.Size(800, 460);
+            this.Controls.Add(this.btnSend);
+            this.Controls.Add(this.txtUserInput);
+            this.Controls.Add(this.txtChatHistory);
+            this.Name = "Form1";
+            this.Text = "CyberSafe - Cybersecurity Chatbot";
+            this.ResumeLayout(false);
+            this.PerformLayout();
         }
-
-        #endregion
-
-        private RichTextBox richTextBox1;
-        private RichTextBox txtChatHistory;
-        private TextBox txtUserInput;
-        private Button btnSend;
     }
 }

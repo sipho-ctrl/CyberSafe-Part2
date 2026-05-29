@@ -5,6 +5,9 @@ using System.Windows.Forms;
 
 namespace CyberSafeGUI
 {
+    // DELEGATE: Defines a method signature for logging messages
+    public delegate void MessageHandler(string message);
+
     public class ChatbotGUI
     {
         private string userName;
@@ -15,6 +18,7 @@ namespace CyberSafeGUI
         private Random random;
         private RichTextBox chatHistory;
         private TextBox userInput;
+        private MessageHandler logMessage;  // DELEGATE field
 
         // Random password tips
         private List<string> passwordTips = new List<string>
@@ -54,6 +58,9 @@ namespace CyberSafeGUI
             sentimentAnalyzer = new SentimentAnalyzer();
             random = new Random();
             userMemory = new Dictionary<string, string>();
+
+            // DELEGATE: Assign method to delegate
+            logMessage = LogToConsole;
         }
 
         public void Start()
@@ -103,6 +110,18 @@ namespace CyberSafeGUI
                 return;
             }
 
+            // Detect sentiment for worried/frustrated
+            string sentiment = sentimentAnalyzer.DetectSentiment(lowerInput);
+            if (sentiment == "worried" || sentiment == "frustrated")
+            {
+                if (lowerInput.Contains("scam"))
+                    AppendBotMessage("I understand your concern. Scammers can be convincing. Let me help you stay safe.");
+                else if (lowerInput.Contains("password"))
+                    AppendBotMessage("I know passwords can be frustrating. Let me share some simple tips.");
+                else if (lowerInput.Contains("phish"))
+                    AppendBotMessage("It's smart to be worried about phishing. Here's how to protect yourself.");
+            }
+
             // Responses
             if (lowerInput.Contains("password"))
             {
@@ -118,6 +137,10 @@ namespace CyberSafeGUI
             {
                 string response = GetRandomResponse(scamTips);
                 AppendBotMessage(response);
+            }
+            else if (lowerInput.Contains("what do you know about me") || lowerInput.Contains("remember me"))
+            {
+                AppendBotMessage($"I remember that your name is {userName} and you're interested in {userFavouriteTopic}.");
             }
             else if (lowerInput.Contains("help"))
             {
@@ -137,6 +160,12 @@ namespace CyberSafeGUI
             userInput.Focus();
         }
 
+        // DELEGATE: Method that gets called through the delegate
+        private void LogToConsole(string message)
+        {
+            System.Diagnostics.Debug.WriteLine($"LOG: {message}");
+        }
+
         private string GetRandomResponse(List<string> responses)
         {
             int index = random.Next(responses.Count);
@@ -151,6 +180,9 @@ namespace CyberSafeGUI
 
         private void AppendBotMessage(string message)
         {
+            // DELEGATE: Call the delegate to log the message
+            logMessage?.Invoke(message);
+
             chatHistory.AppendText($"Chatbot: {message}{Environment.NewLine}");
             chatHistory.ScrollToCaret();
         }
