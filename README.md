@@ -127,24 +127,12 @@ GitHub Actions is configured to build the project on each push. A green check ma
 
 [Watch the CyberSafe Part 2 Presentation]()
 
-*(Replace with your actual YouTube unlisted link after recording)*
+
 
 ---
 
 ## Marking Criteria Coverage
 
-| Criteria | Status |
-|----------|--------|
-| Correct Submission (5) | ✅ |
-| GitHub and Releases (10) | ✅ |
-| Keyword Recognition (15) | ✅ |
-| Random Responses (10) | ✅ |
-| Conversation Flow (10) | ✅ |
-| Memory and Recall (10) | ✅ |
-| Sentiment Detection (10) | ✅ |
-| Code Structure and Optimisation (10) | ✅ |
-| Chatbot GUI Design (10) | ✅ |
-| Video Presentation (10) | Pending |
 
 ---
 
