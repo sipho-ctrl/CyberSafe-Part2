@@ -189,9 +189,7 @@ GitHub Actions is configured to build the project on each push. A green check ma
 
 ## Video Presentations
 
-| Part | Link |
-|------|------|
-| Part 3 | [Watch Part 2 Presentation]([https://youtu.be/Cn9aY3kiT30?si=tzwHvIge0eJ1bRVV](https://youtu.be/9NoSapFif9o?si=avHYd-7zfw_WZNI_)) |
+https://youtu.be/9NoSapFif9o?si=avHYd-7zfw_WZNI_ 
 
 
 ---
