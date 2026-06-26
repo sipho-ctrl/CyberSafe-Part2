@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using MySql.Data.MySqlClient;
+using System.Data.SqlClient;
 
 namespace CyberSafeGUI
 {
@@ -10,34 +10,35 @@ namespace CyberSafeGUI
 
         public DatabaseHelper()
         {
-            // Update this with your MySQL credentials
-            connectionString = "Server=localhost;Database=cybersafe_db;Uid=root;Pwd=;";
+            // YOUR EXACT CONNECTION STRING FROM SERVER EXPLORER
+            connectionString = "Data Source=LabVM2047644\\SQLEXPRESS;Initial Catalog=cyber_tasks_db;User ID=task_user;Password=TaskPass123!;Encrypt=False;";
         }
 
         public bool TestConnection()
         {
             try
             {
-                using (MySqlConnection conn = new MySqlConnection(connectionString))
+                using (SqlConnection conn = new SqlConnection(connectionString))
                 {
                     conn.Open();
                     return true;
                 }
             }
-            catch
+            catch (Exception ex)
             {
+                System.Diagnostics.Debug.WriteLine($"DB Error: {ex.Message}");
                 return false;
             }
         }
 
         public void AddTask(string title, string description, DateTime? reminderDate)
         {
-            string query = "INSERT INTO tasks (title, description, reminder_date) VALUES (@title, @desc, @reminder)";
+            string query = "INSERT INTO tasks (title, description, reminder_date, is_completed) VALUES (@title, @desc, @reminder, 0)";
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@title", title);
                     cmd.Parameters.AddWithValue("@desc", description);
@@ -53,26 +54,25 @@ namespace CyberSafeGUI
             string query = "SELECT id, title, description, reminder_date, is_completed FROM tasks";
 
             if (!showCompleted)
-                query += " WHERE is_completed = FALSE";
+                query += " WHERE is_completed = 0";
 
             query += " ORDER BY created_at DESC";
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
-                using (MySqlDataReader reader = cmd.ExecuteReader())
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                using (SqlDataReader reader = cmd.ExecuteReader())
                 {
                     while (reader.Read())
                     {
-                        tasks.Add(new TaskItem
-                        {
-                            Id = reader.GetInt32("id"),
-                            Title = reader.GetString("title"),
-                            Description = reader.GetString("description"),
-                            ReminderDate = reader.IsDBNull(reader.GetOrdinal("reminder_date")) ? null : reader.GetDateTime("reminder_date"),
-                            IsCompleted = reader.GetBoolean("is_completed")
-                        });
+                        TaskItem task = new TaskItem();
+                        task.Id = Convert.ToInt32(reader["id"]);
+                        task.Title = reader["title"].ToString();
+                        task.Description = reader["description"]?.ToString();
+                        task.ReminderDate = reader["reminder_date"] == DBNull.Value ? null : (DateTime?)reader["reminder_date"];
+                        task.IsCompleted = Convert.ToBoolean(reader["is_completed"]);
+                        tasks.Add(task);
                     }
                 }
             }
@@ -81,12 +81,12 @@ namespace CyberSafeGUI
 
         public void MarkTaskComplete(int taskId)
         {
-            string query = "UPDATE tasks SET is_completed = TRUE WHERE id = @id";
+            string query = "UPDATE tasks SET is_completed = 1 WHERE id = @id";
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", taskId);
                     cmd.ExecuteNonQuery();
@@ -98,10 +98,10 @@ namespace CyberSafeGUI
         {
             string query = "DELETE FROM tasks WHERE id = @id";
 
-            using (MySqlConnection conn = new MySqlConnection(connectionString))
+            using (SqlConnection conn = new SqlConnection(connectionString))
             {
                 conn.Open();
-                using (MySqlCommand cmd = new MySqlCommand(query, conn))
+                using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@id", taskId);
                     cmd.ExecuteNonQuery();
