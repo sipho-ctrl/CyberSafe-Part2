@@ -2,7 +2,7 @@
 
 **Author:** Sipho Swartbooi  
 **Module:** PROG6221 - Programming 2A  
-**Assessment:** POE Part 2 and Part 3  
+**Assessment:** POE  
 **Date:** June 2026
 
 ---
