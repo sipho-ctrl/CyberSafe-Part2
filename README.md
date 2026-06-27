@@ -189,41 +189,7 @@ GitHub Actions is configured to build the project on each push. A green check ma
 
 ## Video Presentations
 
-https://youtu.be/9NoSapFif9o?si=avHYd-7zfw_WZNI_ 
-
-
----
-
-## Marking Criteria Coverage
-
-### Part 2
-
-| Criteria | Status |
-|----------|--------|
-| Correct Submission | ✅ |
-| GitHub and Releases | ✅ |
-| Keyword Recognition | ✅ |
-| Random Responses | ✅ |
-| Conversation Flow | ✅ |
-| Memory and Recall | ✅ |
-| Sentiment Detection | ✅ |
-| Code Structure and Optimisation | ✅ |
-| Chatbot GUI Design | ✅ |
-| Video Presentation | ✅ |
-
-### Part 3
-
-| Criteria | Status |
-|----------|--------|
-| Correct Submission | ✅ |
-| GitHub and Releases with Tags | ✅ |
-| Task Assistant with Reminders | ✅ |
-| Database Integration | ✅ |
-| Cybersecurity Mini-Game | ✅ |
-| NLP Simulation | ✅ |
-| Activity Log Feature | ✅ |
-| Combining Parts 1, 2, and 3 | ✅ |
-| Video Presentation | ⏳ Pending |
+https://youtu.be/9NoSapFif9o?si=7pV8_HfEdyatAKxC
 
 ---
 
